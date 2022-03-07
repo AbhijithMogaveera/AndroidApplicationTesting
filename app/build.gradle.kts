@@ -2,7 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-    id("androidx.navigation.safeargs.kotlin")
+    id(Plugin.navigationSafeArgs)
+    id(Plugin.hilt)
 }
 
 android {
@@ -140,4 +141,11 @@ dependencies {
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.37")
     debugImplementation("androidx.fragment:fragment-testing:1.5.0-alpha03")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
+
+    //dagger hilt
+    implementation("com.google.dagger:hilt-android:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+}
+kapt {
+    correctErrorTypes = true
 }
