@@ -12,14 +12,16 @@ abstract class ViewBindingFragment<T:ViewBinding>:Fragment() {
     private var _binding:T?=null
     val viewBinding get() = _binding!!
 
-    abstract fun getBinding():T
+    abstract fun getBinding( inflater: LayoutInflater,
+                             container: ViewGroup?,
+                             savedInstanceState: Bundle?):T
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = getBinding()
+        _binding = getBinding(inflater, container, savedInstanceState)
         return viewBinding.root
     }
 
