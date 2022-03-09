@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class AuthenticationRepoImpl(
 
-):AuthenticationRepo {
-    override fun login(loginData: LoginData)= Either.catch {
+) : AuthenticationRepo {
+    override fun login(loginData: LoginData) = Either.catch {
 
     }
 }

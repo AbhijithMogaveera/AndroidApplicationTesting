@@ -57,6 +57,12 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")
     implementation ("io.arrow-kt:arrow-optics:$arrow_version")
     kapt("io.arrow-kt:arrow-meta:$arrow_version")
+
+    val roomVersion = "2.4.2"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
 }
 kapt {
     correctErrorTypes = true
