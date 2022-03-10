@@ -9,6 +9,8 @@ import com.abhijith.core.db.AppDatabase
     exportSchema = false,
     version = 1
 )
-abstract class AuthDataBase: AppDatabase() {
+abstract class AuthDataBase : RoomDatabase(
+
+), AppDatabase {
 
 }
