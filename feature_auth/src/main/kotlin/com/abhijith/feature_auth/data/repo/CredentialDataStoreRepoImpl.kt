@@ -13,13 +13,12 @@ import com.abhijith.feature_auth.domain.repo.CredentialDataStoreRepo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-
+private val Application.dataStore: DataStore<Preferences> by preferencesDataStore(name = "credential_data_store")
 
 class CredentialDataStoreRepoImpl(
     private val application: Application,
 ) : CredentialDataStoreRepo {
 
-    private val Application.dataStore: DataStore<Preferences> by preferencesDataStore(name = "credential_data_store")
     private val isLoggedIn = booleanPreferencesKey("is_user_logged_in")
     private val userName = stringPreferencesKey("user_name")
     private val authToken = stringPreferencesKey("auth_token")
@@ -34,11 +33,15 @@ class CredentialDataStoreRepoImpl(
         application.dataStore.edit {
             it[userName] = userData.email
             it[authToken] = userData.authToken
+            it[isLoggedIn] = true
         }
     }
 
     override suspend fun editLoginData(userData: LoginData) {
-
+        application.dataStore.edit {
+            it[userName] = userData.email
+            it[authToken] = userData.authToken
+        }
     }
 
     override suspend fun clearLoginData() {
