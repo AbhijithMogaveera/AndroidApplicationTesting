@@ -37,6 +37,7 @@ class CredentialDataStoreRepoImplTest {
     @Test
     fun saveLoginData() {
         runBlocking {
+            clearData()
             val authToken = "abhi8898"
             val email = "abhialur8898@gamil.com"
 
@@ -44,17 +45,25 @@ class CredentialDataStoreRepoImplTest {
                 assertTrue(this.authToken != authToken)
                 assertTrue(this.userName != email)
             }
-
-            repo.saveLoginData(LoginData(
-                email,
-                authToken
-            ))
-
+            saveData(email, authToken)
             repo.getCredentialData().apply {
                 assertTrue(this.authToken == authToken)
                 assertTrue(this.userName == email)
             }
         }
+    }
+
+    private suspend fun clearData() {
+        repo.clearLoginData()
+    }
+
+    private suspend fun saveData(email: String, authToken: String) {
+        repo.saveLoginData(
+            LoginData(
+                email,
+                authToken
+            )
+        )
     }
 
     @Test
