@@ -57,6 +57,18 @@ dependencies {
 
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
+    // For instrumented tests.
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+    // ...with Kotlin.
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
+    // ...with Java.
+    androidTestAnnotationProcessor("com.google.dagger:hilt-android-compiler:2.38.1")
+
+    testImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+    // ...with Kotlin.
+    kaptTest("com.google.dagger:hilt-android-compiler:2.38.1")
+
 }
 kapt {
     correctErrorTypes = true

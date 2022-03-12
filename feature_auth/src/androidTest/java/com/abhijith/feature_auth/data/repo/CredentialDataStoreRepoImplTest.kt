@@ -5,6 +5,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.abhijith.feature_auth.domain.model.LoginData
 import com.abhijith.feature_auth.domain.repo.CredentialDataStoreRepo
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -13,22 +16,29 @@ import org.junit.Assert.*
 
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
 
 @RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class CredentialDataStoreRepoImplTest {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
     val authToken = "abhi8898"
     val email = "abhialur8898@gamil.com"
 
     val loginData = LoginData(email, authToken)
 
-    private var application: Application = ApplicationProvider.getApplicationContext()
-    private var repo:CredentialDataStoreRepo = CredentialDataStoreRepoImpl(application)
+    @Inject
+    lateinit var repo:CredentialDataStoreRepo
 
     @Before
     fun setUp() {
+        hiltRule.inject()
     }
 
     @After

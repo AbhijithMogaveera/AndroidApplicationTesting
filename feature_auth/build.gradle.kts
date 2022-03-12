@@ -23,7 +23,7 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 32
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.abhijith.feature_auth.CustomTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -104,6 +104,16 @@ dependencies {
     debugImplementation("androidx.fragment:fragment-testing:1.5.0-alpha03")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
 
+    // For instrumented tests.
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+    // ...with Kotlin.
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
+    // ...with Java.
+    androidTestAnnotationProcessor("com.google.dagger:hilt-android-compiler:2.38.1")
+
+    testImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+    // ...with Kotlin.
+    kaptTest("com.google.dagger:hilt-android-compiler:2.38.1")
 
 }
 kapt {
