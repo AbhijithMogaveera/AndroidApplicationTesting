@@ -58,6 +58,14 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
 
+    // For Robolectric tests.
+    testImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+    // ...with Kotlin.
+    kaptTest("com.google.dagger:hilt-android-compiler:2.38.1")
+    // ...with Java.
+    testAnnotationProcessor("com.google.dagger:hilt-android-compiler:2.38.1")
+
+
     // For instrumented tests.
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
     // ...with Kotlin.
@@ -65,9 +73,7 @@ dependencies {
     // ...with Java.
     androidTestAnnotationProcessor("com.google.dagger:hilt-android-compiler:2.38.1")
 
-    testImplementation("com.google.dagger:hilt-android-testing:2.38.1")
-    // ...with Kotlin.
-    kaptTest("com.google.dagger:hilt-android-compiler:2.38.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
 
 }
 kapt {

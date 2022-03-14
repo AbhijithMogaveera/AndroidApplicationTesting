@@ -116,6 +116,9 @@ dependencies {
     kaptTest("com.google.dagger:hilt-android-compiler:2.38.1")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
 
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+
 
 }
 kapt {
