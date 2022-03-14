@@ -20,4 +20,14 @@ object AppModule {
     fun providesCredentialTestRepo(
         @ApplicationContext application: Context
     ): CredentialDataStoreRepo = CredentialDataStoreRepoImpl(application as Application)
+
+    @Provides
+    @Singleton
+    fun providesRegistrationApi(
+        @ApplicationContext application: Context
+    ):Any = Unit
+
+    @Provides
+    @Singleton
+    fun providesOkHttpClient():
 }

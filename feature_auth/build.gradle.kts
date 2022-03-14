@@ -114,43 +114,11 @@ dependencies {
     testImplementation("com.google.dagger:hilt-android-testing:2.38.1")
     // ...with Kotlin.
     kaptTest("com.google.dagger:hilt-android-compiler:2.38.1")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+
 
 }
 kapt {
     correctErrorTypes = true
 }
-/*
-protobuf {
-    protoc {
-        // Download from repositories
-        artifact = "com.google.protobuf:protoc:3.0.0"
-    }
-    generateProtoTasks {
-        this.ofSourceSet("main").forEach { task ->
-            task.builtins {
-                getByName("java") {
-                    option("lite")
-                }
-            }
-        }
-    }
-}
-*/
-
-/*protobuf {
-    protoc {
-        // find latest version number here:
-        // https://mvnrepository.com/artifact/com.google.protobuf/protoc
-        artifact = "com.google.protobuf:protoc:3.10.0"
-    }
-    generateProtoTasks {
-        all().forEach { task ->
-            task.plugins{
-                create("java") {
-                    option("lite")
-                }
-            }
-        }
-    }
-}*/
 

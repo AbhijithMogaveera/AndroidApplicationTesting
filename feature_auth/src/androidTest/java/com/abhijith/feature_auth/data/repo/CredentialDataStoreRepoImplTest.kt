@@ -28,10 +28,6 @@ class CredentialDataStoreRepoImplTest {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
-    val authToken = "abhi8898"
-    val email = "abhialur8898@gamil.com"
-
-    val loginData = LoginData(email, authToken)
 
     @Inject
     lateinit var repo:CredentialDataStoreRepo
@@ -52,6 +48,10 @@ class CredentialDataStoreRepoImplTest {
     fun getUserLoginFlow() {
 
     }
+
+    val authToken = "abhi8898"
+    val email = "abhialur8898@gamil.com"
+    val loginData = LoginData(email, authToken)
 
     @Test
     fun saveLoginData() {
