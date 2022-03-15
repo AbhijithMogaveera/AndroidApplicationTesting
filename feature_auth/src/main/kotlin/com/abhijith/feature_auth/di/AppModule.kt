@@ -22,7 +22,8 @@ object AppModule {
     @Provides
     @Singleton
     fun providesCredentialTestRepo(
-        @ApplicationContext application: Context
+        @ApplicationContext
+        application: Context
     ): CredentialDataStoreRepo = CredentialDataStoreRepoImpl(application as Application)
 
 }
