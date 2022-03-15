@@ -33,7 +33,7 @@ fun MockWebServer.enqueueResponse(fileName: String?, code: Int) {
     )
 }
 
-class UserRegistrationRepoImplTest {
+class DefaultRegistrationRepoImplTest {
     private val client = OkHttpClient.Builder()
         .connectTimeout(1, TimeUnit.SECONDS)
         .readTimeout(1, TimeUnit.SECONDS)
@@ -62,9 +62,9 @@ class UserRegistrationRepoImplTest {
         runBlocking {
             mockWebServer.enqueueResponse("success/registration_success_response.json", 200)
             val registrationData = RegistrationRequest("abhialur8898@gmail.com", "helllo", "")
-            val credentialDataStoreRepo = CredentialDataStoreRepoTestDouble()
+            val credentialDataStoreRepo = TestCredentialDataStoreRepo()
             val userRegistrationRepo: UserRegistrationRepo =
-                UserRegistrationRepoImpl(api, credentialDataStoreRepo)
+                DefaultRegistrationRepoImpl(api, credentialDataStoreRepo)
             assert(
                 !credentialDataStoreRepo.getUserLoginFlow().first()
             )
@@ -103,9 +103,9 @@ class UserRegistrationRepoImplTest {
         runBlocking {
             mockWebServer.enqueueResponse(null, 409)
             val registrationData = RegistrationRequest("abhialur8898@gmail.com", "helllo", "")
-            val credentialDataStoreRepo = CredentialDataStoreRepoTestDouble()
+            val credentialDataStoreRepo = TestCredentialDataStoreRepo()
             val userRegistrationRepo: UserRegistrationRepo =
-                UserRegistrationRepoImpl(api, credentialDataStoreRepo)
+                DefaultRegistrationRepoImpl(api, credentialDataStoreRepo)
             when (val it = userRegistrationRepo.registerUser(
                 registrationData.emailId,
                 registrationData.password
@@ -132,9 +132,9 @@ class UserRegistrationRepoImplTest {
         runBlocking {
             mockWebServer.enqueueResponse(null, 409)
             val registrationData = RegistrationRequest("abhialur8898@gmail.com", "helllo", "")
-            val credentialDataStoreRepo = CredentialDataStoreRepoTestDouble()
+            val credentialDataStoreRepo = TestCredentialDataStoreRepo()
             val userRegistrationRepo: UserRegistrationRepo =
-                UserRegistrationRepoImpl(api, credentialDataStoreRepo)
+                DefaultRegistrationRepoImpl(api, credentialDataStoreRepo)
             when (val it = userRegistrationRepo.deleteAccount(
                 registrationData.emailId,
             )) {

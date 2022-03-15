@@ -4,5 +4,8 @@ import arrow.core.Either
 import com.abhijith.feature_auth.domain.model.LoginData
 
 interface AuthenticationRepo {
-    fun login(loginData: LoginData): Either<Throwable, Unit>
+    suspend fun login(
+        userId:String,
+        password:String
+    ): Either<Throwable, Unit>
 }

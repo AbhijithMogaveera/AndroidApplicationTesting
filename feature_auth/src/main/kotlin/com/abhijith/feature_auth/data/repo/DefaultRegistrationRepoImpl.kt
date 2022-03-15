@@ -10,7 +10,7 @@ import com.abhijith.feature_auth.domain.repo.UserRegistrationRepo
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
-class UserRegistrationRepoImpl
+class DefaultRegistrationRepoImpl
 @Inject constructor(
     private val registrationApi: RegistrationApi,
     private val credentialDataStoreRepo:CredentialDataStoreRepo

@@ -23,7 +23,7 @@ import javax.inject.Inject
 
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
-class CredentialDataStoreRepoImplTest {
+class DefaultCredentialDataStoreRepoTest {
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)

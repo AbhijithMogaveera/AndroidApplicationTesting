@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.lang.IllegalStateException
 
-class CredentialDataStoreRepoTestDouble : CredentialDataStoreRepo {
+class TestCredentialDataStoreRepo : CredentialDataStoreRepo {
 
     private val loginDataList = MutableStateFlow<LoginData?>(null)
 
