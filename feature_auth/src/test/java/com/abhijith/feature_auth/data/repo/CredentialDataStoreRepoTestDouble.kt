@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.map
 import java.lang.IllegalStateException
 
 class CredentialDataStoreRepoTestDouble : CredentialDataStoreRepo {
+
     private val loginDataList = MutableStateFlow<LoginData?>(null)
+
     override suspend fun getUserLoginFlow(): Flow<Boolean> = loginDataList.map {
         it != null
     }
