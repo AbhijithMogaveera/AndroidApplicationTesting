@@ -25,7 +25,7 @@ class UserRegistrationRepoImpl
         )
     }.map {
         RegistrationData(
-            emailId, password
+            emailId, it.data.authToken
         )
     }
 

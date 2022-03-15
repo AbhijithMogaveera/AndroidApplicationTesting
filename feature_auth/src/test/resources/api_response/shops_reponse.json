@@ -1,32 +1,7 @@
 {
-  "shop_name":"MyShop",
-  "products":[
-    {
-      "id":0,
-      "name":"hello",
-      "qty":1
-    },
-    {
-      "id":1,
-      "name":"hello",
-      "qty":1
-    },
-    {
-
-      "id":2,
-      "name":"hello",
-      "qty":1
-    },
-    {
-
-      "id":3,
-      "name":"hello",
-      "qty":1
-    },
-    {
-      "id":4,
-      "name":"hello",
-      "qty":1
-    }
-  ]
+  "isVolatile":false,
+  "data":{
+    "authToken":"hello_how_are_your_token",
+    "verification":"zero"
+  }
 }
