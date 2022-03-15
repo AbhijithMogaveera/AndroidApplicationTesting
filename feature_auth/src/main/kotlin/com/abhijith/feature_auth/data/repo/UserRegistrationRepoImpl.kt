@@ -12,7 +12,7 @@ class UserRegistrationRepoImpl
     val registrationApi: RegistrationApi
 ) : UserRegistrationRepo {
 
-    override fun registerUser(
+    override suspend fun registerUser(
         emailId: String,
         password: String
     ): Either<Throwable, RegistrationData> = Either.catch {
@@ -29,7 +29,7 @@ class UserRegistrationRepoImpl
         )
     }
 
-    override fun deleteAccount(emailId: String): Either<Throwable, Boolean> = Either.catch {
+    override suspend fun deleteAccount(emailId: String): Either<Throwable, Boolean> = Either.catch {
         TODO()
     }
 }

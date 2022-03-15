@@ -6,10 +6,10 @@ import com.abhijith.feature_auth.domain.model.RegistrationData
 interface UserRegistrationRepo {
 
     /*returns authToken */
-    fun registerUser(
+    suspend fun registerUser(
         emailId: String,
         password: String
     ): Either<Throwable, RegistrationData>
 
-    fun deleteAccount(emailId: String): Either<Throwable, Boolean>
+    suspend fun deleteAccount(emailId: String): Either<Throwable, Boolean>
 }
