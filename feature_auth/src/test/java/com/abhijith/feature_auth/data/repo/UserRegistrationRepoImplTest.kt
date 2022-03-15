@@ -42,7 +42,8 @@ class UserRegistrationRepoImplTest {
         .readTimeout(1, TimeUnit.SECONDS)
         .writeTimeout(1, TimeUnit.SECONDS)
         .build()
-    private val mockWebServer = MockWebServer()
+
+    var  mockWebServer = MockWebServer()
 
     private val api = Retrofit.Builder()
         .baseUrl(mockWebServer.url("/"))
@@ -59,13 +60,14 @@ class UserRegistrationRepoImplTest {
 
     @After
     fun tearDown() {
+        mockWebServer.shutdown()
     }
 
 
     @Test
     fun registerUser() {
         runBlocking {
-            mockWebServer.enqueueResponse("shops_reponse.json",404)
+            mockWebServer.enqueueResponse("shops_reponse.json",200)
             val registrationData = RegistrationRequest("abhialur8898@gmail.com", "helllo", "")
             /*val response = Response(false, RegistrationResponse("", ""))*/
             /* `when`(api.register(registrationData)).thenReturn(response)*/
