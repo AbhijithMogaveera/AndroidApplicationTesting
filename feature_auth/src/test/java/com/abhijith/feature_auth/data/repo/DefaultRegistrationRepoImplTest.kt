@@ -4,6 +4,7 @@ import arrow.core.Either
 import com.abhijith.feature_auth.data.source.remote.RegistrationApi
 import com.abhijith.feature_auth.data.source.remote.model.request.RegistrationRequest
 import com.abhijith.feature_auth.domain.repo.UserRegistrationRepo
+import com.abhijith.feature_auth.helper.Api
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
@@ -24,9 +25,9 @@ fun MockWebServer.enqueueResponse(fileName: String?, code: Int) {
     enqueue(
         MockResponse().apply {
             setResponseCode(code)
-            fileName?.let {
-                javaClass.classLoader?.getResourceAsStream("api_response/$it")?.let {
-                    setBody(it.source().buffer().readString(StandardCharsets.UTF_8))
+            fileName?.let { fileName ->
+                javaClass.classLoader?.getResourceAsStream("api_response/$fileName")?.let { inputStream ->
+                    setBody(inputStream.source().buffer().readString(StandardCharsets.UTF_8))
                 }
             }
         }
@@ -34,20 +35,8 @@ fun MockWebServer.enqueueResponse(fileName: String?, code: Int) {
 }
 
 class DefaultRegistrationRepoImplTest {
-    private val client = OkHttpClient.Builder()
-        .connectTimeout(1, TimeUnit.SECONDS)
-        .readTimeout(1, TimeUnit.SECONDS)
-        .writeTimeout(1, TimeUnit.SECONDS)
-        .build()
 
-    private var mockWebServer = MockWebServer()
-
-    private val api = Retrofit.Builder()
-        .baseUrl(mockWebServer.url("/"))
-        .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(RegistrationApi::class.java)
+    private val api = Api.retrofit.create(RegistrationApi::class.java)
 
     @Before
     fun setUp() {
@@ -60,11 +49,13 @@ class DefaultRegistrationRepoImplTest {
     @Test
     fun `registration success response`() {
         runBlocking {
-            mockWebServer.enqueueResponse("success/registration_success_response.json", 200)
+            Api.mockWebServer.enqueueResponse("success/registration_success_response.json", 200)
             val registrationData = RegistrationRequest("abhialur8898@gmail.com", "helllo", "")
             val credentialDataStoreRepo = TestCredentialDataStoreRepo()
-            val userRegistrationRepo: UserRegistrationRepo =
-                DefaultRegistrationRepoImpl(api, credentialDataStoreRepo)
+            val userRegistrationRepo: UserRegistrationRepo = DefaultRegistrationRepoImpl(
+                api,
+                credentialDataStoreRepo
+            )
             assert(
                 !credentialDataStoreRepo.getUserLoginFlow().first()
             )
@@ -101,7 +92,7 @@ class DefaultRegistrationRepoImplTest {
     @Test
     fun `registration error response`() {
         runBlocking {
-            mockWebServer.enqueueResponse(null, 409)
+            Api.mockWebServer.enqueueResponse(null, 409)
             val registrationData = RegistrationRequest("abhialur8898@gmail.com", "helllo", "")
             val credentialDataStoreRepo = TestCredentialDataStoreRepo()
             val userRegistrationRepo: UserRegistrationRepo =
@@ -130,7 +121,7 @@ class DefaultRegistrationRepoImplTest {
     @Test
     fun deleteAccount() {
         runBlocking {
-            mockWebServer.enqueueResponse(null, 409)
+            Api.mockWebServer.enqueueResponse(null, 409)
             val registrationData = RegistrationRequest("abhialur8898@gmail.com", "helllo", "")
             val credentialDataStoreRepo = TestCredentialDataStoreRepo()
             val userRegistrationRepo: UserRegistrationRepo =
