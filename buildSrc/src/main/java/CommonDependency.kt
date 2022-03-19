@@ -1,7 +1,5 @@
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 
-const val materialXmlLib = "com.google.android.material:material:1.5.0"
-
 fun DependencyHandlerScope.addRoomDependency(needTestDependency: Boolean = true) {
 
     val roomVersion = "2.4.2"
