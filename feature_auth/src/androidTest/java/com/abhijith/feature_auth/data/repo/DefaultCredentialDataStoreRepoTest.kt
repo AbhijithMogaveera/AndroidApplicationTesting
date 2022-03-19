@@ -35,13 +35,14 @@ class DefaultCredentialDataStoreRepoTest {
     @Before
     fun setUp() {
         hiltRule.inject()
+        runBlocking {
+            clearData()
+        }
     }
 
     @After
     fun tearDown() {
-        runBlocking {
-            clearData()
-        }
+
     }
 
     @Test

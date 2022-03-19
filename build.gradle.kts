@@ -1,11 +1,10 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
         google()
     }
     dependencies {
         val nav_version = "2.4.1"
+        classpath("com.android.tools.build:gradle:7.0.4")
         classpath ("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.38.1")
 //        classpath ("com.google.protobuf:protobuf-gradle-plugin:0.8.10")

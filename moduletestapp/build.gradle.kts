@@ -1,24 +1,23 @@
 plugins {
-    id("com.android.library")
+    id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id(Plugin.navigationSafeArgs)
-    id(Plugin.hilt)
-    id("kotlin-kapt")
-
 }
 
 android {
     compileSdk = 32
 
     defaultConfig {
+        applicationId = "com.example.moduletestapp"
         minSdk = 21
         targetSdk = 32
-        testInstrumentationRunner = "com.abhijith.feature_auth.CustomTestRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -33,38 +32,19 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
+    buildFeatures{
         viewBinding = true
     }
 }
 
 dependencies {
-
-    implementation(project(path = ":core"))
+    implementation(project(path = ":feature_auth"))
     addMaterialLibDependency()
     implementation("androidx.activity:activity-ktx:1.5.0-alpha03")
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
-    addRoomDependency()
-    addHiltDependency()
-    addArrowDependency()
-    addCoroutinesDependency()
-    addSquareUpDependency()
-    addDataStoreDependency()
-    addNavigationDependency()
-
-    //test
-    addAndroidXTestDependency()
-    addJUnitTestImpl()
-    addMokitoTestDependency()
-    addHamcrest()
-    addRobolectric()
-    addGoogleTruth()
-
-    androidTestImplementation("com.linkedin.dexmaker:dexmaker-mockito:2.28.1")
-
-}
-kapt {
-    correctErrorTypes = true
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
