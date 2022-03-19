@@ -23,3 +23,7 @@ internal fun DependencyHandlerScope.kaptAndroidTest(dependencyNotation:String){
 internal fun DependencyHandlerScope.androidTestAnnotationProcessor(dependencyNotation:String){
     add("androidTestAnnotationProcessor", dependencyNotation)
 }
+
+internal fun DependencyHandlerScope.debugImplementation(dependencyNotation:String){
+    add("debugImplementation", dependencyNotation)
+}

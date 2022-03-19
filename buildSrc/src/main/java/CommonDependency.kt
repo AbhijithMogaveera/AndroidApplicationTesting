@@ -46,7 +46,7 @@ fun DependencyHandlerScope.addCoroutinesDependency() {
     impl("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutine_version}")
     impl("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutine_version}")
     testImpl("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutine_version}")
-    androidTestImpl("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutine_version}")
+//    androidTestImpl("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutine_version}")
 }
 
 fun DependencyHandlerScope.addDataStoreDependency() {
@@ -90,4 +90,8 @@ fun DependencyHandlerScope.addRobolectric() {
 
 fun DependencyHandlerScope.addHamcrest() {
     testImpl("org.hamcrest:hamcrest-all:1.3")
+}
+fun DependencyHandlerScope.addFragmentTesting() {
+    val fragment_version = "1.4.1"
+    debugImplementation("androidx.fragment:fragment-testing:$fragment_version")
 }

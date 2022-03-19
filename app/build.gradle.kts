@@ -90,11 +90,14 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    /*implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
-
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")*/
+    addCoroutinesDependency()
     // Coroutine Lifecycle Scopes
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
+    testImplementation("org.robolectric:robolectric:4.4")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
 
     // Navigation Components
@@ -123,15 +126,12 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.hamcrest:hamcrest-all:1.3")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("org.robolectric:robolectric:4.4")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
     testImplementation("com.google.truth:truth:1.0.1")
     testImplementation("org.mockito:mockito-core:3.9.0")
 
     // Instrumented Unit Tests
     androidTestImplementation("junit:junit:4.13.2")
     androidTestImplementation("com.linkedin.dexmaker:dexmaker-mockito:2.28.1")
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
     androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
     androidTestImplementation("com.google.truth:truth:1.0.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
