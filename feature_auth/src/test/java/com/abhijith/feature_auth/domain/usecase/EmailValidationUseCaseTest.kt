@@ -8,7 +8,7 @@ import org.junit.Before
 import org.junit.Test
 
 class EmailValidationUseCaseTest{
-    lateinit var emailValidationUseCase: EmailValidationUseCase
+    private lateinit var emailValidationUseCase: EmailValidationUseCase
     @Before
     fun setUp(){
         emailValidationUseCase = EmailValidationUseCase()
@@ -22,22 +22,14 @@ class EmailValidationUseCaseTest{
     @Test
     fun testForWrongEMail(){
         runBlocking {
-            assert(!emailValidationUseCase.flowOfValidationResults.first())
-            emailValidationUseCase.validate("abhialur88988gmail.com")
-            assert(!emailValidationUseCase.flowOfValidationResults.first())
-            emailValidationUseCase.validate("abhialur8898\$email.com")
-            assert(!emailValidationUseCase.flowOfValidationResults.first())
+            assert(!emailValidationUseCase.validate("abhialur8898\$email.com"))
         }
     }
 
     @Test
     fun testForWrongRightEmail(){
         runBlocking {
-            assert(!emailValidationUseCase.flowOfValidationResults.first())
-            emailValidationUseCase.validate("abhialur88988@gmail.com")
-            assert(emailValidationUseCase.flowOfValidationResults.first())
-            emailValidationUseCase.validate("abhialur889s@email.com")
-            assert(emailValidationUseCase.flowOfValidationResults.first())
+            assert(emailValidationUseCase.validate("abhialur88988@gmail.com"))
         }
     }
 
