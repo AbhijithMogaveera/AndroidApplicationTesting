@@ -1,5 +1,6 @@
 package com.abhijith.feature_auth.presentation.viewmodels
 
+import android.util.Log
 import com.abhijith.core.utility.InputState
 import com.abhijith.feature_auth.domain.usecase.EmailValidationUseCase
 import com.abhijith.feature_auth.domain.usecase.PasswordValidation
@@ -10,8 +11,15 @@ import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestRule
+import org.junit.runner.Description
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import org.junit.runners.model.Statement
 
+@RunWith(JUnit4::class)
 class LoginViewModelTest {
 
     @Before
@@ -49,6 +57,7 @@ class LoginViewModelTest {
                 passwordValidation = PasswordValidation(),
                 thread = TestCoroutineDispatcher()
             )
+            print("LogIsWorking")
             vm.isShouldStartValidationEmission = true
             vm.onPasswordChanged("abhialur8898")
             assertTrue(vm.passwordValidationErrorMessage.first() == InputState.VALID)

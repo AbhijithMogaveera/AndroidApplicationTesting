@@ -41,6 +41,7 @@ android {
 dependencies {
 
     implementation(project(path = ":core"))
+
     addMaterialLibDependency()
     implementation("androidx.activity:activity-ktx:1.5.0-alpha03")
     implementation("androidx.core:core-ktx:1.7.0")
@@ -63,6 +64,7 @@ dependencies {
     addRobolectric()
     addGoogleTruth()
     addFragmentTesting()
+
     androidTestImplementation("com.linkedin.dexmaker:dexmaker-mockito:2.28.1")
 
 }

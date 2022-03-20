@@ -91,6 +91,7 @@ fun DependencyHandlerScope.addRobolectric() {
 fun DependencyHandlerScope.addHamcrest() {
     testImpl("org.hamcrest:hamcrest-all:1.3")
 }
+
 fun DependencyHandlerScope.addFragmentTesting() {
     val fragment_version = "1.4.1"
     debugImplementation("androidx.fragment:fragment-testing:$fragment_version")
