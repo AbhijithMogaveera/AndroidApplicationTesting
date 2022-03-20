@@ -1,7 +1,11 @@
 package com.abhijith.feature_auth.presentation.component.screen
 
-import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.lifecycle.Lifecycle
+import android.util.Log
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.abhijith.androidtesting.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -11,7 +15,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.internal.matchers.Null
 
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
@@ -32,12 +35,31 @@ class LoginScreenTest {
 
     @Test
     fun checkViewRecycling() {
-        val sernario = launchFragmentInHiltContainer<LoginScreen>{
-            assert(false){
-
+        launchFragmentInHiltContainer<LoginScreen> {
+            assert( this is LoginScreen)
+            if(this is LoginScreen){
+                this.loginViewModel
+                print("-----------------------------------------")
+                Log.e("Hello",this.viewBinding.loginElements.tvError.text.toString())
+                print("-----------------------------------------")
             }
+            /*if (this is LoginScreen) {
+                Espresso.onView(
+                    withId(
+                        viewBinding.loginElements.editText.id
+                    )
+                ).perform(
+                    ViewActions
+                        .typeText("abhialur8898@gmail.com")
+                ).check(
+                    ViewAssertions
+                        .matches(
+                            ViewMatchers
+                                .isDisplayed()
+                        )
+                )
+            }*/
         }
-
     }
 
 }
