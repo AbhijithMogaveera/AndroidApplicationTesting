@@ -75,6 +75,18 @@ dependencies {
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
 
+
+    addHiltDependency(needTestDependency = true)
+
+    //test
+    addAndroidXTestDependency()
+    addJUnitTestImpl()
+    addMockitoTestDependency()
+    addHamcrest()
+    addRobolectric()
+    addGoogleTruth()
+    addFragmentTesting()
+
 }
 kapt {
     correctErrorTypes = true

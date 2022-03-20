@@ -22,6 +22,7 @@ import org.junit.runners.model.Statement
 @RunWith(JUnit4::class)
 class LoginViewModelTest {
 
+
     @Before
     fun setUp() {
 

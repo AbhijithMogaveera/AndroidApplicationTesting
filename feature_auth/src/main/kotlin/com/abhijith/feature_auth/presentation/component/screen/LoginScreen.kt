@@ -7,10 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 //import com.abhijith.core.ViewBindingFragment
 import com.abhijith.feature_auth.databinding.LoginScreenLayoutBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginScreen: Fragment() {
+
     private var _binding:LoginScreenLayoutBinding?=null
+
     val viewBinding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -18,6 +23,7 @@ class LoginScreen: Fragment() {
     ): View {
         return getBinding(inflater, container, savedInstanceState).root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
     }

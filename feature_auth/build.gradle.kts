@@ -49,12 +49,13 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
 
     addRoomDependency()
-    addHiltDependency()
     addArrowDependency()
     addCoroutinesDependency()
     addSquareUpDependency()
     addDataStoreDependency()
     addNavigationDependency()
+
+    addHiltDependency(needTestDependency = true)
 
     //test
     addAndroidXTestDependency()
