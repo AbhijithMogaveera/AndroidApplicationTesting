@@ -58,7 +58,7 @@ dependencies {
     //test
     addAndroidXTestDependency()
     addJUnitTestImpl()
-    addMokitoTestDependency()
+    addMockitoTestDependency()
     addHamcrest()
     addRobolectric()
     addGoogleTruth()

@@ -80,7 +80,7 @@ fun DependencyHandlerScope.addGoogleTruth() {
     testImpl("com.google.truth:truth:1.0.1")
 }
 
-fun DependencyHandlerScope.addMokitoTestDependency() {
+fun DependencyHandlerScope.addMockitoTestDependency() {
     testImpl("org.mockito:mockito-core:3.9.0")
 }
 

@@ -1,15 +1,14 @@
 package com.abhijith.feature_auth.presentation.viewmodels
 
-import com.abhijith.feature_auth.domain.usecase.AlphaNumericValidation
+import com.abhijith.core.utility.InputState
 import com.abhijith.feature_auth.domain.usecase.EmailValidationUseCase
-import kotlinx.coroutines.Dispatchers
+import com.abhijith.feature_auth.domain.usecase.PasswordValidation
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
-import org.junit.Assert.*
-
 import org.junit.After
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
@@ -26,43 +25,35 @@ class LoginViewModelTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun onEmailChanged(){
+    fun onEmailChanged() {
         runBlocking {
             val vm = LoginViewModel(
                 emailValidationUseCase = EmailValidationUseCase(),
-                alphaNumericValidationForPassword = AlphaNumericValidation(),
+                passwordValidation = PasswordValidation(),
                 thread = TestCoroutineDispatcher()
             )
             vm.isShouldStartValidationEmission = true
             vm.onEmailChanged("abhialur8898@gmail.com")
-            assert(vm.emailValidationErrorMessage.first().first){
-                vm.emailValidationErrorMessage.value.second
-            }
+            assertTrue(vm.emailValidationErrorMessage.first() == InputState.VALID)
             vm.onEmailChanged("abhialur8898gmail.com")
-            assert(!vm.emailValidationErrorMessage.first().first){
-                vm.emailValidationErrorMessage.value.second
-            }
+            assertTrue(vm.emailValidationErrorMessage.first() != InputState.VALID)
         }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun onPasswordChanged(){
+    fun onPasswordChanged() {
         runBlocking {
             val vm = LoginViewModel(
                 emailValidationUseCase = EmailValidationUseCase(),
-                alphaNumericValidationForPassword = AlphaNumericValidation(),
+                passwordValidation = PasswordValidation(),
                 thread = TestCoroutineDispatcher()
             )
             vm.isShouldStartValidationEmission = true
             vm.onPasswordChanged("abhialur8898")
-            assert(vm.passwordValidationErrorMessage.first().first){
-                vm.emailValidationErrorMessage.value.second
-            }
-            vm.onPasswordChanged("abhialur")
-            assert(!vm.passwordValidationErrorMessage.first().first){
-                vm.emailValidationErrorMessage.value.second
-            }
+            assertTrue(vm.passwordValidationErrorMessage.first() == InputState.VALID)
+            vm.onPasswordChanged("abhiaur")
+            assertTrue(vm.passwordValidationErrorMessage.first() != InputState.VALID)
         }
     }
 
