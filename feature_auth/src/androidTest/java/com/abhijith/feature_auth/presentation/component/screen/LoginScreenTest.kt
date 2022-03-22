@@ -5,11 +5,11 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.abhijith.androidtesting.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -35,30 +35,47 @@ class LoginScreenTest {
 
     @Test
     fun checkViewRecycling() {
-        launchFragmentInHiltContainer<LoginScreen> {
-            assert( this is LoginScreen)
-            if(this is LoginScreen){
-                this.loginViewModel
-                print("-----------------------------------------")
-                Log.e("Hello",this.viewBinding.loginElements.tvError.text.toString())
-                print("-----------------------------------------")
-            }
-            /*if (this is LoginScreen) {
-                Espresso.onView(
-                    withId(
-                        viewBinding.loginElements.editText.id
-                    )
-                ).perform(
-                    ViewActions
-                        .typeText("abhialur8898@gmail.com")
-                ).check(
-                    ViewAssertions
-                        .matches(
-                            ViewMatchers
-                                .isDisplayed()
+        runBlocking {
+            launchFragmentInHiltContainer<LoginScreen> {
+                assert(this is LoginScreen)
+                if (this is LoginScreen) {
+                    this.loginViewModel
+                    print("-----------------------------------------")
+                    Log.e("Hello", this.viewBinding.loginElements.tvError.text.toString())
+                    Log.e("Hello", "------------start---------------------")
+                    runBlocking {
+                        val onView = Espresso
+                            .onView(
+                                ViewMatchers.withId(
+                                    viewBinding.loginElements.editText.id
+                                )
+                            )
+                        Log.e("Hello", "------------IN_BETWEEN---------------------")
+                        /*onView.perform(
+                            ViewActions.typeText("Hello world")
+                        )*/
+                        Log.e("Hello", "------------END---------------------")
+
+//                        onView.check(ViewAssertions.matches(ViewMatchers.withText("Hello world")))
+                    }
+                }
+                /*if (this is LoginScreen) {
+                    Espresso.onView(
+                        withId(
+                            viewBinding.loginElements.editText.id
                         )
-                )
-            }*/
+                    ).perform(
+                        ViewActions
+                            .typeText("abhialur8898@gmail.com")
+                    ).check(
+                        ViewAssertions
+                            .matches(
+                                ViewMatchers
+                                    .isDisplayed()
+                            )
+                    )
+                }*/
+            }
         }
     }
 
