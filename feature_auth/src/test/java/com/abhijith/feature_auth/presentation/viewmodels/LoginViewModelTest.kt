@@ -2,6 +2,8 @@ package com.abhijith.feature_auth.presentation.viewmodels
 
 import android.util.Log
 import com.abhijith.core.utility.InputState
+import com.abhijith.feature_auth.data.repo.DefaultAuthenticationRepo
+import com.abhijith.feature_auth.di.RepoModuleTest
 import com.abhijith.feature_auth.domain.usecase.EmailValidationUseCase
 import com.abhijith.feature_auth.domain.usecase.PasswordValidation
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -39,7 +41,8 @@ class LoginViewModelTest {
             val vm = LoginViewModel(
                 emailValidationUseCase = EmailValidationUseCase(),
                 passwordValidation = PasswordValidation(),
-                thread = TestCoroutineDispatcher()
+                thread = TestCoroutineDispatcher(),
+                authenticationRepo = RepoModuleTest.providesAuthenticationRepo()
             )
             vm.isShouldStartValidationEmission = true
             vm.onEmailChanged("abhialur8898@gmail.com")
@@ -56,7 +59,8 @@ class LoginViewModelTest {
             val vm = LoginViewModel(
                 emailValidationUseCase = EmailValidationUseCase(),
                 passwordValidation = PasswordValidation(),
-                thread = TestCoroutineDispatcher()
+                thread = TestCoroutineDispatcher(),
+                authenticationRepo = RepoModuleTest.providesAuthenticationRepo()
             )
             print("LogIsWorking")
             vm.isShouldStartValidationEmission = true

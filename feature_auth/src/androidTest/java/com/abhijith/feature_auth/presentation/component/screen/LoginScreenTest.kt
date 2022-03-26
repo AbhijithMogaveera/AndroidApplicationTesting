@@ -9,8 +9,14 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import com.abhijith.androidtesting.launchFragmentInHiltContainer
 import com.abhijith.feature_auth.R
+import com.abhijith.feature_auth.di.RepoModuleTest
+import com.abhijith.feature_auth.utility.LoginState
+import com.androidTest.mocks.data.repo.fake.TestAuthenticationRepo
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -24,7 +30,8 @@ class LoginScreenTest {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
-    private lateinit var instrumentContext:Context
+    private lateinit var instrumentContext: Context
+
     @Before
     fun setUp() {
         instrumentContext = InstrumentationRegistry.getInstrumentation().context
@@ -37,7 +44,7 @@ class LoginScreenTest {
 
 
     @Test
-    fun testForEmailValidation_valid_email(){
+    fun testForEmailValidation_valid_email() {
         //Arrange
         val validEmail = "abhialur8898@gmail.com"
 
@@ -55,7 +62,7 @@ class LoginScreenTest {
     }
 
     @Test
-    fun testForEmailValidation_in_valid_email(){
+    fun testForEmailValidation_in_valid_email() {
         //Arrange
         val validEmail = "abhialur8898@gmailcom"
 
@@ -73,7 +80,57 @@ class LoginScreenTest {
     }
 
     @Test
-    fun testForPasswordValidation(){
+    fun testForPasswordValidation() {
+
+    }
+
+    @Test
+    fun testForValidLogin() {
+        runBlocking {
+            RepoModuleTest.providesAuthenticationRepo()
+            //Arrange
+            val validEmail = "abhialur8898@gmailcom"
+
+            //Act
+            var loginFragment: LoginScreen? = null
+            launchFragmentInHiltContainer<LoginScreen>() {
+                loginFragment = this as LoginScreen
+            }
+            loginFragment!!.let { loginScreen ->
+                Espresso
+                    .onView(ViewMatchers.withId(R.id.et_email_input))
+                    .perform(ViewActions.typeText(TestAuthenticationRepo.valid_data.first),ViewActions.closeSoftKeyboard())
+                Espresso
+                    .onView(ViewMatchers.withId(R.id.et_password_input))
+                    .perform(ViewActions.typeText(TestAuthenticationRepo.valid_data.second), ViewActions.closeSoftKeyboard())
+
+                Espresso
+                    .onView(ViewMatchers.withId(R.id.btn_login))
+                    .perform(ViewActions.click())
+                val collection = loginScreen.loginViewModel.loginStateFlow.collect {
+                    when(it){
+                        LoginState.LoggedIn -> {
+                            assert(true)
+                        }
+                        LoginState.LoggedOut -> {
+                            assert(false)
+                        }
+                    }
+                }
+            }
+
+
+            //Assert
+            Espresso
+                .onView(ViewMatchers.withId(R.id.tv_email_input_error))
+                .check(ViewAssertions.matches(ViewMatchers.withText(instrumentContext.getString(R.string.invalid_email_id))))
+
+        }
+
+    }
+
+    @Test
+    fun testFakeValidLogin() {
 
     }
 

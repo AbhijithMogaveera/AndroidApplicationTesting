@@ -57,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/etUserId">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -69,10 +70,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:text="Login"
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.1"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword"

@@ -17,6 +17,14 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    sourceSets {
+        this.getByName("androidTest"){
+            this.java.srcDir("src/mock/java")
+        }
+        this.getByName("test"){
+            this.java.srcDir("src/mock/java")
+        }
+    }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
