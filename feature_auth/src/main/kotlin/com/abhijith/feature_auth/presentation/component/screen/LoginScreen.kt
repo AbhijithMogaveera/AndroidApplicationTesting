@@ -43,6 +43,9 @@ class LoginScreen : Fragment() {
         viewBinding.loginElements.etEmailInput.doOnTextChanged { text, start, before, count ->
             loginViewModel.onEmailChanged(text.toString())
         }
+        viewBinding.loginElements.btnLogin.setOnClickListener {
+            loginViewModel.onLoginClick()
+        }
 
         lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {

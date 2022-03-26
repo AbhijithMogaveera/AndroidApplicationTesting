@@ -1,5 +1,6 @@
 package com.abhijith.feature_auth.presentation.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
@@ -25,7 +26,7 @@ class LoginViewModel
     private val emailValidationUseCase: EmailValidationUseCase,
     private val passwordValidation: PasswordValidation,
     private val thread: CoroutineDispatcher,
-    private val authenticationRepo: AuthenticationRepo
+    val authenticationRepo: AuthenticationRepo
 ) : ViewModel() {
 
     var isShouldStartValidationEmission: Boolean = true
@@ -82,10 +83,10 @@ class LoginViewModel
             if (isValidEmail) {
                 when(authenticationRepo.login(myEmail, myPassWord)){
                     is Either.Left -> {
-                        _loginStateFlow.emit(LoginState.LoggedIn)
+                        _loginStateFlow.emit(LoginState.LoggedOut)
                     }
                     is Either.Right -> {
-                        _loginStateFlow.emit(LoginState.LoggedOut)
+                        _loginStateFlow.emit(LoginState.LoggedIn)
                     }
                 }
             }

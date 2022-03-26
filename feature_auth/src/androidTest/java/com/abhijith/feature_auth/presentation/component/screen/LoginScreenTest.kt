@@ -1,6 +1,7 @@
 package com.abhijith.feature_auth.presentation.component.screen
 
 import android.content.Context
+import android.util.Log
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
@@ -107,7 +108,7 @@ class LoginScreenTest {
                 Espresso
                     .onView(ViewMatchers.withId(R.id.btn_login))
                     .perform(ViewActions.click())
-                val collection = loginScreen.loginViewModel.loginStateFlow.collect {
+                loginScreen.loginViewModel.loginStateFlow.collectLatest {
                     when(it){
                         LoginState.LoggedIn -> {
                             assert(true)
