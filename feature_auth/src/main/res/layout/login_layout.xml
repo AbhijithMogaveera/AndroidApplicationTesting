@@ -3,11 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:theme="@style/Theme.AndroidTesting">
 
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:gravity="center"
+        android:textSize="28sp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/clr_smoky_black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etUserId"
+        android:layout_marginTop="50dp"
         style="@style/TextInputLayoutTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,20 +32,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text"
+            android:id="@+id/et_email_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvError"
+            android:id="@+id/tv_email_input_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:text="*Please enter valid emailid"
+            tools:text="@string/invalid_email_id"
             android:textColor="@color/design_default_color_error" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutPassword"
         style="@style/TextInputLayoutTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:text="*Password enter alpha numeric password"
+            tools:text="@string/invalid_password"
             android:textColor="@color/design_default_color_error" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,8 +73,10 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:text="Login"
-        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutPassword"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

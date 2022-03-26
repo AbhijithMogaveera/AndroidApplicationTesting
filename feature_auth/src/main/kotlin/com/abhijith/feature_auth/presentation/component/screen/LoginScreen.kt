@@ -4,17 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.abhijith.core.utility.InputState
+import com.abhijith.feature_auth.R
 //import com.abhijith.core.ViewBindingFragment
 import com.abhijith.feature_auth.databinding.LoginScreenLayoutBinding
 import com.abhijith.feature_auth.presentation.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginScreen: Fragment() {
+class LoginScreen : Fragment() {
 
-    private var _binding:LoginScreenLayoutBinding?=null
+    private var _binding: LoginScreenLayoutBinding? = null
 
     val viewBinding get() = _binding!!
 
@@ -31,6 +40,44 @@ class LoginScreen: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        viewBinding.loginElements.etEmailInput.doOnTextChanged { text, start, before, count ->
+            loginViewModel.onEmailChanged(text.toString())
+        }
+
+        lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                onViewLifecycleMoveToStart()
+            }
+        }
+    }
+
+    private suspend fun onViewLifecycleMoveToStart() {
+        coroutineScope {
+            launch {
+                loginViewModel.emailValidationErrorMessage.collect {
+                    when (it) {
+                        InputState.BLANK -> {
+                            //ignore
+                        }
+                        InputState.INVALID -> {
+                            viewBinding.loginElements.tvEmailInputError.text = requireContext().getString(R.string.invalid_email_id)
+                        }
+                        InputState.EXISTS -> {
+                            viewBinding.loginElements.tvEmailInputError.text = requireContext().getString(R.string.existing_email_id)
+                        }
+                        InputState.VALID -> {
+                            viewBinding.loginElements.tvEmailInputError.text = ""
+                        }
+                        InputState.PROHIBITED -> {
+                            //ignore
+                        }
+                        InputState.UN_INITIALIZED -> {
+                            //ignore
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun getBinding(

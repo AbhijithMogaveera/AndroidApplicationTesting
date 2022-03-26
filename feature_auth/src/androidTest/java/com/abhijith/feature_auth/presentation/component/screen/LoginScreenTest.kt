@@ -1,31 +1,33 @@
 package com.abhijith.feature_auth.presentation.component.screen
 
-import android.util.Log
+import android.content.Context
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.platform.app.InstrumentationRegistry
 import com.abhijith.androidtesting.launchFragmentInHiltContainer
+import com.abhijith.feature_auth.R
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 @HiltAndroidTest
 class LoginScreenTest {
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
+    private lateinit var instrumentContext:Context
     @Before
     fun setUp() {
-
+        instrumentContext = InstrumentationRegistry.getInstrumentation().context
     }
 
     @After
@@ -33,50 +35,46 @@ class LoginScreenTest {
 
     }
 
-    @Test
-    fun checkViewRecycling() {
-        runBlocking {
-            launchFragmentInHiltContainer<LoginScreen> {
-                assert(this is LoginScreen)
-                if (this is LoginScreen) {
-                    this.loginViewModel
-                    print("-----------------------------------------")
-                    Log.e("Hello", this.viewBinding.loginElements.tvError.text.toString())
-                    Log.e("Hello", "------------start---------------------")
-                    runBlocking {
-                        val onView = Espresso
-                            .onView(
-                                ViewMatchers.withId(
-                                    viewBinding.loginElements.editText.id
-                                )
-                            )
-                        Log.e("Hello", "------------IN_BETWEEN---------------------")
-                        /*onView.perform(
-                            ViewActions.typeText("Hello world")
-                        )*/
-                        Log.e("Hello", "------------END---------------------")
 
-//                        onView.check(ViewAssertions.matches(ViewMatchers.withText("Hello world")))
-                    }
-                }
-                /*if (this is LoginScreen) {
-                    Espresso.onView(
-                        withId(
-                            viewBinding.loginElements.editText.id
-                        )
-                    ).perform(
-                        ViewActions
-                            .typeText("abhialur8898@gmail.com")
-                    ).check(
-                        ViewAssertions
-                            .matches(
-                                ViewMatchers
-                                    .isDisplayed()
-                            )
-                    )
-                }*/
-            }
-        }
+    @Test
+    fun testForEmailValidation_valid_email(){
+        //Arrange
+        val validEmail = "abhialur8898@gmail.com"
+
+        //Act
+        launchFragmentInHiltContainer<LoginScreen>()
+        Espresso
+            .onView(ViewMatchers.withId(R.id.et_email_input))
+            .perform(ViewActions.typeText(validEmail))
+
+        //Assert
+        Espresso
+            .onView(ViewMatchers.withId(R.id.tv_email_input_error))
+            .check(ViewAssertions.matches(ViewMatchers.withText("")))
+
+    }
+
+    @Test
+    fun testForEmailValidation_in_valid_email(){
+        //Arrange
+        val validEmail = "abhialur8898@gmailcom"
+
+        //Act
+        launchFragmentInHiltContainer<LoginScreen>()
+        Espresso
+            .onView(ViewMatchers.withId(R.id.et_email_input))
+            .perform(ViewActions.typeText(validEmail))
+
+        //Assert
+        Espresso
+            .onView(ViewMatchers.withId(R.id.tv_email_input_error))
+            .check(ViewAssertions.matches(ViewMatchers.withText(instrumentContext.getString(R.string.invalid_email_id))))
+
+    }
+
+    @Test
+    fun testForPasswordValidation(){
+
     }
 
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="invalid_email_id" type="string">*Please enter valid email Id</item>
+    <item name="existing_email_id" type="string">f</item>
+    <item name="invalid_password" type="string">*Password enter alpha numeric password</item>
+    <string name="login">Login</string>
+</resources>

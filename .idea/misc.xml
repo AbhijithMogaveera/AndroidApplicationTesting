@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ADMIN/Desktop/Abhijith/AndroidApplicationTesting/core/src/main/res/drawable/ic_mobile_shopping_illustration.xml" value="0.2005" />
         <entry key="..\:/Users/ADMIN/Desktop/Abhijith/AndroidApplicationTesting/core/src/main/res/layout/fragment_blank.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/ADMIN/Desktop/Abhijith/AndroidApplicationTesting/feature_auth/src/main/res/layout/login_layout.xml" value="0.33" />
-        <entry key="..\:/Users/ADMIN/Desktop/Abhijith/AndroidApplicationTesting/feature_auth/src/main/res/layout/login_screen_layout.xml" value="0.18" />
+        <entry key="..\:/Users/ADMIN/Desktop/Abhijith/AndroidApplicationTesting/feature_auth/src/main/res/layout/login_screen_layout.xml" value="0.2" />
         <entry key="..\:/Users/ADMIN/Desktop/Abhijith/AndroidApplicationTesting/moduletestapp/src/main/res/layout/activity_main.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/ADMIN/Desktop/Abhijith/AndroidApplicationTesting/moduletestapp/src/main/res/layout/login_layout.xml" value="0.33" />
         <entry key="..\:/Users/ADMIN/Desktop/Abhijith/AndroidApplicationTesting/mylibrary/src/main/res/layout/activity_fullscreen.xml" value="0.2513586956521739" />

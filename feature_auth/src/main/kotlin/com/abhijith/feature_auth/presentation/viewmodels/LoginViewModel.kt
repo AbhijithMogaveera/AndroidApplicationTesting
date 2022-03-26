@@ -20,7 +20,7 @@ class LoginViewModel
     private val thread: CoroutineDispatcher
 ) : ViewModel() {
 
-    var isShouldStartValidationEmission: Boolean = false
+    var isShouldStartValidationEmission: Boolean = true
 
     private val _emailValidationErrorMessage = MutableStateFlow(InputState.UN_INITIALIZED)
     val emailValidationErrorMessage = _emailValidationErrorMessage
