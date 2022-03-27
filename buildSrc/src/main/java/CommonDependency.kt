@@ -97,3 +97,12 @@ fun DependencyHandlerScope.addFragmentTesting() {
     val fragment_version = "1.4.1"
     debugImplementation("androidx.fragment:fragment-testing:$fragment_version")
 }
+
+fun DependencyHandlerScope.addComposeDependency() {
+    impl("androidx.compose.ui:ui:${Version.compose_version}")
+    impl("androidx.compose.material:material:${Version.compose_version}")
+    impl("androidx.compose.ui:ui-tooling-preview:${Version.compose_version}")
+    impl("androidx.activity:activity-compose:1.3.1")
+    androidTestImpl("androidx.compose.ui:ui-test-junit4:${Version.compose_version}")
+    debugImplementation("androidx.compose.ui:ui-tooling:${Version.compose_version}")
+}

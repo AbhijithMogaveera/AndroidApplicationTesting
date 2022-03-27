@@ -30,6 +30,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Version.compose_version
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -86,6 +89,7 @@ dependencies {
     addRobolectric()
     addGoogleTruth()
     addFragmentTesting()
+    addComposeDependency()
 
 }
 kapt {

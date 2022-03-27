@@ -16,6 +16,5 @@ rootProject.name = "AndroidTesting"
 include(":app")
 include(":feature_auth")
 include(":feature_notes")
-include(":feature_profile")
 include(":core")
 include(":moduletestapp")

@@ -15,7 +15,6 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature_auth" />
             <option value="$PROJECT_DIR$/feature_notes" />
-            <option value="$PROJECT_DIR$/feature_profile" />
             <option value="$PROJECT_DIR$/moduletestapp" />
           </set>
         </option>
