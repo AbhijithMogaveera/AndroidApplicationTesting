@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.AndroidTesting" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
+        <item name="textAllCaps">false</item>
         <item name="colorPrimary">@color/clr_smoky_black</item>
         <item name="colorPrimaryVariant">@color/clr_orange_soda</item>
         <item name="colorOnPrimary">@color/white</item>

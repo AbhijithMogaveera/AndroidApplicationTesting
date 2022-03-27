@@ -4,4 +4,5 @@
     <item name="existing_email_id" type="string">f</item>
     <item name="invalid_password" type="string">*Password enter alpha numeric password</item>
     <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

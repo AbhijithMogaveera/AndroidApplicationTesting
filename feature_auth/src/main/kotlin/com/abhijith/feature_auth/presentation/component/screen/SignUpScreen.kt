@@ -15,6 +15,7 @@ import com.abhijith.core.utility.InputState
 import com.abhijith.feature_auth.R
 //import com.abhijith.core.ViewBindingFragment
 import com.abhijith.feature_auth.databinding.LoginScreenLayoutBinding
+import com.abhijith.feature_auth.databinding.SignupScreenLayoutBinding
 import com.abhijith.feature_auth.presentation.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.coroutineScope
@@ -22,9 +23,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginScreen : Fragment() {
+class SignUpScreen : Fragment() {
 
-    private var _binding: LoginScreenLayoutBinding? = null
+    private var _binding: SignupScreenLayoutBinding? = null
 
     val viewBinding get() = _binding!!
 
@@ -44,15 +45,12 @@ class LoginScreen : Fragment() {
         viewBinding.loginElements.etEmailInput.doOnTextChanged { text, start, before, count ->
             loginViewModel.onEmailChanged(text.toString())
         }
-
-        viewBinding.loginElements.btnLogin.setOnClickListener {
+        viewBinding.loginElements.btnSignUp.setOnClickListener {
             loginViewModel.onLoginClick()
         }
-
-        viewBinding.loginElements.btnGotoSignup.setOnClickListener {
-            findNavController().navigate(R.id.nav_login_to_sign_up_screen)
+        viewBinding.loginElements.btnGotoLogin.setOnClickListener {
+            findNavController().navigate(R.id.nav_sign_up_to_login_screen)
         }
-
         lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 onViewLifecycleMoveToStart()
@@ -93,8 +91,8 @@ class LoginScreen : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): LoginScreenLayoutBinding {
-        return LoginScreenLayoutBinding.inflate(inflater, container, false).apply {
+    ): SignupScreenLayoutBinding {
+        return SignupScreenLayoutBinding.inflate(inflater, container, false).apply {
             _binding = this
         }
     }

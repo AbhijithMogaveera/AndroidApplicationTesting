@@ -1,5 +1,6 @@
 package com.abhijith.feature_auth.di
 
+import com.abhijith.feature_auth.data.source.remote.AuthenticationApi
 import com.abhijith.feature_auth.data.source.remote.RegistrationApi
 import dagger.Module
 import dagger.Provides
@@ -17,5 +18,11 @@ object ApiModule {
     fun providesRegistrationApi(
         retrofit: Retrofit
     ): RegistrationApi = retrofit.create(RegistrationApi::class.java)
+
+    @Provides
+    @Singleton
+    fun providesAuthenticationApi(
+        retrofit: Retrofit
+    ): AuthenticationApi = retrofit.create(AuthenticationApi::class.java)
 
 }
