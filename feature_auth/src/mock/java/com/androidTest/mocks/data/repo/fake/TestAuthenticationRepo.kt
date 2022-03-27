@@ -9,6 +9,7 @@ class TestAuthenticationRepo : AuthenticationRepo {
         val valid_data = "abhialur8898@gmail.com" to "test1234"
         val in_valid_data = "abhialur8898@gmail.com" to "test1df234"
 
+        /*hilt wont support dependency injection in JVM testing*/
         fun getInstance() = if (!this::testRepo.isInitialized) {
             testRepo = TestAuthenticationRepo()
             testRepo
@@ -20,8 +21,9 @@ class TestAuthenticationRepo : AuthenticationRepo {
 
     override suspend fun login(userId: String, password: String): Either<Throwable, Unit> =
         Either.catch {
-            if (userId != valid_data.first || password != valid_data.first) {
+            if (userId != valid_data.first || password != valid_data.second) {
                 throw Exception()
             }
+            print("Valid data")
         }
 }

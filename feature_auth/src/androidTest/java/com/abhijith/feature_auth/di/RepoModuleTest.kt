@@ -20,6 +20,7 @@ import javax.inject.Singleton
 )
 @Module
 object RepoModuleTest{
+
     @Provides
     @Singleton
     fun providesAuthenticationRepo(): AuthenticationRepo = TestAuthenticationRepo.getInstance()
