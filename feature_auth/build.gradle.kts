@@ -73,7 +73,6 @@ dependencies {
     addRobolectric()
     addGoogleTruth()
     addFragmentTesting()
-
     androidTestImplementation("com.linkedin.dexmaker:dexmaker-mockito:2.28.1")
 
 }

@@ -57,6 +57,7 @@ fun DependencyHandlerScope.addDataStoreDependency() {
 fun DependencyHandlerScope.addNavigationDependency() {
     impl("androidx.navigation:navigation-fragment-ktx:2.4.1")
     impl("androidx.navigation:navigation-ui-ktx:2.4.1")
+    androidTestImpl("androidx.navigation:navigation-testing:2.4.1")
 }
 
 fun DependencyHandlerScope.addAndroidXTestDependency() {

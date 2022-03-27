@@ -1,5 +1,6 @@
 package com.abhijith.feature_auth.presentation.component.screen
 
+//import com.abhijith.core.ViewBindingFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +14,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.abhijith.core.utility.InputState
 import com.abhijith.feature_auth.R
-//import com.abhijith.core.ViewBindingFragment
-import com.abhijith.feature_auth.databinding.LoginScreenLayoutBinding
 import com.abhijith.feature_auth.databinding.SignupScreenLayoutBinding
 import com.abhijith.feature_auth.presentation.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,17 +44,29 @@ class SignUpScreen : Fragment() {
         viewBinding.loginElements.etEmailInput.doOnTextChanged { text, start, before, count ->
             loginViewModel.onEmailChanged(text.toString())
         }
+
         viewBinding.loginElements.btnSignUp.setOnClickListener {
             loginViewModel.onLoginClick()
         }
+
         viewBinding.loginElements.btnGotoLogin.setOnClickListener {
-            findNavController().navigate(R.id.nav_sign_up_to_login_screen)
+            exitThisScreen()
         }
+
         lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 onViewLifecycleMoveToStart()
             }
         }
+    }
+
+    private fun exitThisScreen() {
+        val findNavController = findNavController()
+        if (findNavController.previousBackStackEntry?.destination?.id == R.id.screen_login) {
+            findNavController.navigateUp()
+            return
+        }
+        findNavController.navigate(R.id.nav_sign_up_to_login_screen)
     }
 
     private suspend fun onViewLifecycleMoveToStart() {
@@ -67,10 +78,12 @@ class SignUpScreen : Fragment() {
                             //ignore
                         }
                         InputState.INVALID -> {
-                            viewBinding.loginElements.tvEmailInputError.text = requireContext().getString(R.string.invalid_email_id)
+                            viewBinding.loginElements.tvEmailInputError.text =
+                                requireContext().getString(R.string.invalid_email_id)
                         }
                         InputState.EXISTS -> {
-                            viewBinding.loginElements.tvEmailInputError.text = requireContext().getString(R.string.existing_email_id)
+                            viewBinding.loginElements.tvEmailInputError.text =
+                                requireContext().getString(R.string.existing_email_id)
                         }
                         InputState.VALID -> {
                             viewBinding.loginElements.tvEmailInputError.text = ""
