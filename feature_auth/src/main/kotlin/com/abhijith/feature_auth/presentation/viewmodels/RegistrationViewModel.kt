@@ -23,7 +23,7 @@ class RegistrationViewModel
     private val emailValidationUseCase: EmailValidationUseCase,
     private val passwordValidation: PasswordValidation,
     private val thread: CoroutineDispatcher,
-    private val registrationRepo: UserRegistrationRepo
+//    private val registrationRepo: UserRegistrationRepo
 ) : ViewModel() {
     private var isShouldStartValidationEmission: Boolean = true
 
@@ -77,14 +77,14 @@ class RegistrationViewModel
             onPasswordChanged(myPassWord)
             val isValidEmail = _emailValidationErrorMessage.first() == InputState.VALID
             if (isValidEmail) {
-                when(registrationRepo.registerUser(myEmail, myPassWord)){
-                    is Either.Left -> {
-                        _registrationWorkState.emit(WorkState.Failed)
-                    }
-                    is Either.Right -> {
-                        _registrationWorkState.emit(WorkState.Success)
-                    }
-                }
+//                when(registrationRepo.registerUser(myEmail, myPassWord)){
+//                    is Either.Left -> {
+//                        _registrationWorkState.emit(WorkState.Failed)
+//                    }
+//                    is Either.Right -> {
+//                        _registrationWorkState.emit(WorkState.Success)
+//                    }
+//                }
             }
         }
     }
