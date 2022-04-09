@@ -27,6 +27,12 @@ android {
             )
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Version.compose_version
+    }
+    buildFeatures {
+        compose = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -42,6 +48,7 @@ android {
 dependencies {
     implementation(project(path = ":feature_auth"))
     implementation(project(path = ":core"))
+    implementation(project(path = ":feature_notes"))
     addMaterialLibDependency()
     implementation("androidx.activity:activity-ktx:1.5.0-alpha03")
     implementation("androidx.core:core-ktx:1.7.0")
@@ -53,4 +60,5 @@ dependencies {
     addHiltDependency()
     addSquareUpDependency()
     addNavigationDependency()
+    addComposeDependency()
 }

@@ -36,12 +36,12 @@ class LoginScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return getBinding(inflater, container, savedInstanceState).root
+        return getBinding(inflater, container).root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewBinding.loginElements.etEmailInput.doOnTextChanged { text, start, before, count ->
+        viewBinding.loginElements.etEmailInput.doOnTextChanged { text, _, _, _ ->
             loginViewModel.onEmailChanged(text.toString())
         }
 
@@ -92,7 +92,6 @@ class LoginScreen : Fragment() {
     private fun getBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
     ): LoginScreenLayoutBinding {
         return LoginScreenLayoutBinding.inflate(inflater, container, false).apply {
             _binding = this

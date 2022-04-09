@@ -40,6 +40,6 @@ object RepoModule {
     ):AuthenticationRepo = DefaultAuthenticationRepo(
         authenticationApi,
         credentialDataStoreRepo
-    ) as AuthenticationRepo
+    )
 
 }

@@ -18,7 +18,10 @@ fun DependencyHandlerScope.addMaterialLibDependency() {
     impl("com.google.android.material:material:1.5.0")
 }
 
-fun DependencyHandlerScope.addHiltDependency(needTestDependency: Boolean = true) {
+fun DependencyHandlerScope.addHiltDependency(
+    needTestDependency: Boolean = true,
+    needComposeSupport:Boolean = false
+) {
     val hiltVersion = "2.38.1"
     impl("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
@@ -28,6 +31,9 @@ fun DependencyHandlerScope.addHiltDependency(needTestDependency: Boolean = true)
         testImpl("com.google.dagger:hilt-android-testing:$hiltVersion")
         kaptAndroidTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
         testImpl("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    }
+    if(needComposeSupport){
+        impl("androidx.hilt:hilt-navigation-compose:1.0.0")
     }
 }
 
@@ -105,4 +111,8 @@ fun DependencyHandlerScope.addComposeDependency() {
     impl("androidx.activity:activity-compose:1.3.1")
     androidTestImpl("androidx.compose.ui:ui-test-junit4:${Version.compose_version}")
     debugImplementation("androidx.compose.ui:ui-tooling:${Version.compose_version}")
+}
+
+fun DependencyHandlerScope.addCoreKTX(){
+    impl("androidx.fragment:fragment-ktx:1.4.1")
 }
