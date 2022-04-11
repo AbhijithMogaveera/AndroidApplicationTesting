@@ -10,14 +10,20 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
-
+object DBModule {
 
     @Provides
-    fun providesSettingsDao(
-        settingsDataBase: SettingsDataBase
-    ) = settingsDataBase.getColorDao()
+    @Singleton
+    fun providesSettingsDB(
+        @ApplicationContext context: Context
+    ): SettingsDataBase = Room
+        .databaseBuilder(
+            context,
+            SettingsDataBase::class.java,
+            SettingsDataBase.NAME
+        ).build()
 
 }

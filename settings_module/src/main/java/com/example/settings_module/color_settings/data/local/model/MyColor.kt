@@ -1,4 +1,4 @@
-package com.example.settings_module.color_settings.data.model
+package com.example.settings_module.color_settings.data.local.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

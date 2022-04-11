@@ -8,14 +8,16 @@ import androidx.fragment.app.Fragment
 import com.abhijith.androidtesting.databinding.NoteDetailsFragmentLayoutBinding
 
 class NoteDetailFragment : Fragment() {
-    var inflate: NoteDetailsFragmentLayoutBinding? = null
-    val binding = inflate!!
+
+    private var _binding: NoteDetailsFragmentLayoutBinding? = null
+    private val binding: NoteDetailsFragmentLayoutBinding = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-         inflate = NoteDetailsFragmentLayoutBinding.inflate(inflater, container, false)
+         _binding = NoteDetailsFragmentLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -25,7 +27,7 @@ class NoteDetailFragment : Fragment() {
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        inflate = null
+        _binding = null
     }
 
 }
