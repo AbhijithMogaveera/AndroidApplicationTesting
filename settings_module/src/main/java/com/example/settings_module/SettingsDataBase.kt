@@ -10,6 +10,7 @@ import com.example.settings_module.color_settings.data.local.model.MyColor
         MyColor::class
     ],
     version = 1,
+    exportSchema = false
 )
 abstract class SettingsDataBase:RoomDatabase() {
     abstract fun getColorDao():ColorDao

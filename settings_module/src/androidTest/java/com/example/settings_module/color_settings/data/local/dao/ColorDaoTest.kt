@@ -21,7 +21,7 @@ class ColorDaoTest {
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    private lateinit var colorSettingsDao: ColorDao
+    lateinit var colorSettingsDao: ColorDao
 
     @Before
     fun insertColor() {
@@ -37,9 +37,7 @@ class ColorDaoTest {
     fun testInset() {
         runBlocking {
             val color = MyColor(0xff1234)
-            colorSettingsDao.insertColor(
-                color
-            )
+            colorSettingsDao.insertColor(color)
             assert(colorSettingsDao.getAllColors().first().contains(color))
         }
     }
@@ -51,7 +49,8 @@ class ColorDaoTest {
             colorSettingsDao.deleteColor(
                 color
             )
-            assert(!colorSettingsDao.getAllColors().first().contains(color))
+            assert(!colorSettingsDao
+                .getAllColors().first().contains(color))
         }
     }
 }

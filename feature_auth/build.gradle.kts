@@ -13,7 +13,7 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 32
-        testInstrumentationRunner = "com.abhijith.feature_auth.CustomTestRunner"
+        testInstrumentationRunner = "com.abhijith.core.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 

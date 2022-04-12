@@ -17,11 +17,12 @@ import javax.inject.Singleton
     replaces = [DBModule::class]
 )
 @Module
-class DBModuleTest {
+object DBModuleTest {
     @Provides
     @Singleton
     fun providesSettingsDB(
-        @ApplicationContext context: Context
+        @ApplicationContext
+        context: Context
     ): SettingsDataBase =
         Room.inMemoryDatabaseBuilder(
             context,
