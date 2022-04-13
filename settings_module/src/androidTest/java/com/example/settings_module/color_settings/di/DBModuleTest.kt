@@ -12,14 +12,14 @@ import org.junit.Assert.*
 import javax.inject.Singleton
 
 
+@Module
 @TestInstallIn(
     components = [SingletonComponent::class],
     replaces = [DBModule::class]
 )
-@Module
 object DBModuleTest {
-    @Provides
-    @Singleton
+
+    @Provides @Singleton
     fun providesSettingsDB(
         @ApplicationContext
         context: Context

@@ -4,6 +4,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.settings_module.color_settings.data.local.model.MyColor
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -24,8 +25,8 @@ class ColorDaoTest {
     lateinit var colorSettingsDao: ColorDao
 
     @Before
-    fun insertColor() {
-
+    fun setUp() {
+        hiltRule.inject()
     }
 
     @After
