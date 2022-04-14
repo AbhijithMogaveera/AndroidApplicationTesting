@@ -15,7 +15,14 @@ android {
         testInstrumentationRunner = "com.example.settings_module.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
-
+    sourceSets {
+        this.getByName("androidTest"){
+            this.java.srcDir("src/fake/java")
+        }
+        this.getByName("test"){
+            this.java.srcDir("src/fake/java")
+        }
+    }
     buildTypes {
         release {
             isMinifyEnabled = false

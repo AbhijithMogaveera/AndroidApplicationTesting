@@ -1,5 +1,6 @@
 package com.example.settings_module.color_settings.data.repo
 
+import androidx.annotation.ColorInt
 import com.example.settings_module.color_settings.data.local.dao.ColorDao
 import com.example.settings_module.color_settings.data.local.model.MyColor
 import com.example.settings_module.color_settings.domain.repo.ColorDB
@@ -19,7 +20,7 @@ class ColorDB @Inject constructor(
         }
     }
 
-    override suspend fun addColor(color: Int): Int {
+    override suspend fun addColor(@ColorInt color: Int): Int {
         val it = runCatching {
             colorDao.insertColor(MyColor(color))
         }

@@ -47,11 +47,15 @@ class ColorDaoTest {
     fun testDelete() {
         runBlocking {
             val color = MyColor(0xff1234)
-            colorSettingsDao.deleteColor(
-                color
+            colorSettingsDao.insertColor(color)
+            colorSettingsDao.deleteColor(color)
+            assert(
+                !colorSettingsDao
+                .getAllColors()
+                .first()
+                .contains(color)
             )
-            assert(!colorSettingsDao
-                .getAllColors().first().contains(color))
         }
     }
+
 }

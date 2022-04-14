@@ -28,9 +28,6 @@ object RepoModule {
         application: Context
     ): CredentialDataStoreRepo = DefaultCredentialDataStoreRepo(application as Application)
 
-    @Provides
-    @Singleton
-    fun provideAppLevelDispatcher() = Dispatchers.IO
 
     @Provides
     @Singleton

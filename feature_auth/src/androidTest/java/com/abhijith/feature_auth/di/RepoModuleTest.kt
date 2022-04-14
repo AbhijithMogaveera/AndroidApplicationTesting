@@ -25,9 +25,6 @@ object RepoModuleTest{
     @Singleton
     fun providesAuthenticationRepo(): AuthenticationRepo = TestAuthenticationRepo.getInstance()
 
-    @Provides
-    @Singleton
-    fun provideAppLevelDispatcher() = Dispatchers.IO
 
     @Provides
     @Singleton

@@ -49,6 +49,8 @@ dependencies {
     implementation(project(path = ":feature_auth"))
     implementation(project(path = ":core"))
     implementation(project(path = ":feature_notes"))
+    implementation(project(path = ":settings_module"))
+    implementation("com.google.android.material:material:1.5.0")
     addMaterialLibDependency()
     implementation("androidx.activity:activity-ktx:1.5.0-alpha03")
     implementation("androidx.core:core-ktx:1.7.0")
