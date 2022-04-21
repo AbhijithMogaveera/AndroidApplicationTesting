@@ -63,4 +63,5 @@ dependencies {
     addSquareUpDependency()
     addNavigationDependency()
     addComposeDependency()
+    addRoomDependency()
 }

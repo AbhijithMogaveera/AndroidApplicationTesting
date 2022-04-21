@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.settings_module.color_settings.presentaion.viewmodel.ColorSettingsViewModel
 
@@ -28,7 +29,12 @@ fun ColorPicker(
             .fillMaxSize()
             .background(color = Color.Green)
     ) {
-        val list by vm.colors.collectAsState(initial = listOf())
+        val list: List<Int> by vm.colors.collectAsState(
+            initial = listOf(
+                "#ffffff".toColorInt(),
+                "#ffffff".toColorInt()
+            )
+        )
         LazyRow(
             content = {
                 items(
@@ -78,6 +84,6 @@ internal fun ColorViewHolder(
 @Composable
 internal fun ColorCreationPage(
     vm: ColorSettingsViewModel = viewModel()
-){
+) {
 
 }
