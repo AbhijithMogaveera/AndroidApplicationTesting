@@ -1,8 +1,6 @@
 package com.example.settings_module.color_settings.presentaion
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -29,29 +27,21 @@ fun ColorPicker(
             .fillMaxSize()
             .background(color = Color.Green)
     ) {
-        val list: List<Int> by vm.colors.collectAsState(
-            initial = listOf(
-                "#ffffff".toColorInt(),
-                "#ffffff".toColorInt()
-            )
-        )
+        val list: List<Int> by vm.colors.collectAsState(initial = listOf())
         LazyRow(
             content = {
                 items(
                     count = list.size,
                     itemContent = { position ->
+                        val color = list[position]
                         ColorViewHolder(
-
                             modifier = Modifier
                                 .size(50.dp)
                                 .padding(10.dp),
-
-                            Color(list[position]),
-
+                            Color(color),
                             isSelected = vm.selectColorIndex == position,
-
                             onClick = {
-                                vm.selectColor(list[position])
+                                vm.selectColor(color)
                             }
                         )
                     },
@@ -61,29 +51,4 @@ fun ColorPicker(
     }
 }
 
-@Composable
-internal fun ColorViewHolder(
-    modifier: Modifier = Modifier,
-    color: Color,
-    isSelected: Boolean,
-    onClick: () -> Unit = {}
-) {
-    Canvas(
-        modifier = modifier.clickable(onClick = onClick),
-        onDraw = {
-            if (isSelected) {
 
-            }
-            drawCircle(
-                color = color
-            )
-        })
-}
-
-
-@Composable
-internal fun ColorCreationPage(
-    vm: ColorSettingsViewModel = viewModel()
-) {
-
-}

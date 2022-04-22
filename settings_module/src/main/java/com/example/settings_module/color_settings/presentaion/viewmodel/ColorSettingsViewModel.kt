@@ -25,7 +25,7 @@ class ColorSettingsViewModel
     val colors = flow {
         emit(listOf(
             "#ffffff".toColorInt(),
-            "#ffffff".toColorInt()
+            "#ffff4f".toColorInt()
         ))
     }
     var selectColorIndex by mutableStateOf(0)
