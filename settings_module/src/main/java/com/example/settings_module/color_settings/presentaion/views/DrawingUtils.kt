@@ -1,6 +1,7 @@
 package com.example.settings_module.color_settings.presentaion.views
 
 import android.content.Context
+import android.content.res.Resources
 import android.util.TypedValue
 
 internal object DrawingUtils {
@@ -13,3 +14,9 @@ internal object DrawingUtils {
     }
 }
 
+val Float.toPx get() = this * Resources.getSystem().displayMetrics.density
+val Float.toDp get() = this / Resources.getSystem().displayMetrics.density
+
+
+val Int.dpToPx get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+val Int.toDp get() = (this / Resources.getSystem().displayMetrics.density).toInt()

@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
+    <com.example.settings_module.color_settings.presentaion.views.ColorPickerView
         android:layout_width="match_parent"
+        app:cpv_alphaChannelText="Hello"
+        app:cpv_alphaChannelVisible="true"
         android:layout_height="match_parent"
         android:id="@+id/framelayout"/>
 <!--    <androidx.fragment.app.FragmentContainerView
