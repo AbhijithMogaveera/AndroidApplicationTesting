@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.settings_module.color_settings.presentaion.views.ColorPickerView
+    <com.example.settings_module.color_settings.presentaion.views.color_picker_view.ColorPickerView
         android:layout_width="match_parent"
         app:cpv_alphaChannelText="Hello"
         app:cpv_alphaChannelVisible="true"
